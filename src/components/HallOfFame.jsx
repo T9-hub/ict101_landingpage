@@ -1,82 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { User, X, Instagram, Facebook, Mail, Quote, GraduationCap, Circle } from 'lucide-react';
-
-// --- Configuration & Helpers ---
-// แก้ไขข้อมูลตั้งต้นตรงนี้
-// const defaultDetail = {
-//     nickname: "ชื่อเล่น",
-//     quote: "ความพยายามไม่เคยทรยศใคร",
-//     facebook: "Facebook Name",
-//     ig: "@instagram_id",
-//     eduHistory: {
-//         juniorHigh: "โรงเรียนตัวอย่าง (ม.ต้น)",
-//         seniorHigh: "โรงเรียนตัวอย่าง (ม.ปลาย)",
-//         university: "มหาวิทยาลัยชื่อดัง - คณะวิศวกรรมศาสตร์"
-//     }
-// };
-
-// // --- Data Management ---
-// const leader = { id: "01", name: "นายธนกฤต บุบผาวาส", nickname: "บอส", role: "หัวหน้าห้อง", img: null, ...defaultDetail };
-// const vices = [
-//     { id: "02", name: "สมหญิง ใจดี", nickname: "หญิง", role: "รองหัวหน้า 1", img: null, ...defaultDetail },
-//     { id: "03", name: "สมชาย กล้าหาญ", nickname: "ชาย", role: "รองหัวหน้า 2", img: null, ...defaultDetail }
-// ];
-
-// // รายชื่อฝ่าย 
-// const departments = [
-//     {
-//         id: "activity",
-//         title: "ฝ่ายกิจกรรม",
-//         color: "border-pink-500 text-pink-600",
-//         dotColor: "bg-pink-500", // สีวงกลมใน Timeline
-//         head: { id: "04", name: "หัวหน้าฝ่าย ก.", nickname: "กิ๊ก", role: "หน.ฝ่ายกิจกรรม", img: null, ...defaultDetail },
-//        members: [
-//         { id: "05", name: "นายสมชาย ใจดี", nickname: "ชาย", role: "สมาชิก", img: null, ...defaultDetail },
-//         { id: "06", name: "นางสาวสมหญิง สวยงาม", nickname: "หญิง", role: "สมาชิก", img: null, ...defaultDetail },
-//         { id: "07", name: "นายเก่ง กล้าหาญ", nickname: "เก่ง", role: "สมาชิก", img: null, ...defaultDetail },
-//         { id: "08", name: "นางสาวฟ้า ใสแจ๋ว", nickname: "ฟ้า", role: "สมาชิก", img: null, ...defaultDetail },
-//         { id: "09", name: "นายต้น ไม้ใหญ่", nickname: "ต้น", role: "สมาชิก", img: null, ...defaultDetail },
-//         { id: "10", name: "นางสาวนก บินสูง", nickname: "นก", role: "สมาชิก", img: null, ...defaultDetail },
-
-//         { id: "11", name: "นายเอก เรียนดี", nickname: "เอก", role: "สมาชิก", img: null, ...defaultDetail },
-//     ]
-//     },
-
-//     {
-//         id: "study",
-//         title: "ฝ่ายการเรียน",
-//         color: "border-blue-500 text-blue-600",
-//         dotColor: "bg-blue-500",
-//         head: { id: "12", name: "หัวหน้าฝ่าย ข.", nickname: "ขวัญ", role: "หน.ฝ่ายการเรียน", img: null, ...defaultDetail },
-//         members: Array(7).fill({ name: "สมาชิกการเรียน", nickname: "เรียน", img: null, ...defaultDetail }).map((m, i) => ({ ...m, id: `S${i+1}` }))
-//     },
-//     {
-//         id: "work",
-//         title: "ฝ่ายการงาน",
-//         color: "border-green-500 text-green-600",
-//         dotColor: "bg-green-500",
-//         head: { id: "20", name: "หัวหน้าฝ่าย ค.", nickname: "เค", role: "หน.ฝ่ายการงาน", img: null, ...defaultDetail },
-//         members: Array(7).fill({ name: "สมาชิกการงาน", nickname: "งาน", img: null, ...defaultDetail }).map((m, i) => ({ ...m, id: `W${i+1}` }))
-//     },
-//     {
-//         id: "inspector",
-//         title: "ฝ่ายสารวัตรนักเรียน",
-//         color: "border-purple-500 text-purple-600",
-//         dotColor: "bg-purple-500",
-//         head: { id: "28", name: "หัวหน้าฝ่าย ง.", nickname: "งิ้ว", role: "หน.ฝ่ายสารวัตร", img: null, ...defaultDetail },
-//         members: Array(7).fill({ name: "สมาชิกสารวัตร", nickname: "วัตร", img: null, ...defaultDetail }).map((m, i) => ({ ...m, id: `I${i+1}` }))
-//     }
-// ];
-
 import { leader, vices, departments } from './membersData';
-
-
-
 //  อัปจาก member  ไปแก้ในนั้น
-
-
-
 
 // --- Member Modal ---
 const MemberModal = ({ member, onClose }) => {

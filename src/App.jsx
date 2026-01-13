@@ -17,7 +17,7 @@ import Header from "./components/Header"           // Hero Section (หน้า
 import About from './components/About'             // ส่วนเกี่ยวกับเรา
 import CurriculumPage from "./components/CurriculumPage"  // หลักสูตรการเรียน
 import Atmosphere from "./components/Atmosphere"   // บรรยากาศห้องเรียน
-import Footer from "./components/footer"           // ส่วนท้ายเว็บ + ข้อมูลติดต่อ
+import Footer from "./components/Footer"           // ส่วนท้ายเว็บ + ข้อมูลติดต่อ
 import SuccessShowcase from "./components/SuccessShowcase"  // แสดงผลงานนักเรียน
 import HallOfFame from './components/HallOfFame'   // ทำเนียบคนเก่ง (หน้าแยก)
 import FeedbackForm from './components/FeedbackForm'  // ฟอร์มแสดงความคิดเห็น
