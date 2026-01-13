@@ -1,0 +1,157 @@
+/* ============================================ */
+/* index.css - Global Styles & Configuration */
+/* ============================================ */
+/* ไฟล์นี้กำหนดสไตล์พื้นฐานทั้งหมดของเว็บไซต์ */
+/* รวมถึง Font, Smooth Scroll และ Theme Configuration */
+
+/* ============================================ */
+/* 1. Import Fonts from Google Fonts */
+/* ============================================ */
+/* Sarabun: ฟอนต์หลักสำหรับภาษาไทย (รองรับทุก weight) */
+/* Google Sans Code: ฟอนต์สำหรับโค้ดหรือตัวเลข */
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+/* ============================================ */
+/* 2. Import Tailwind CSS */
+/* ============================================ */
+@import "tailwindcss";
+
+/* ============================================ */
+/* 3. Tailwind Theme Configuration */
+/* ============================================ */
+/* กำหนดฟอนต์ที่จะใช้ใน Tailwind utilities */
+@theme {
+  /* ฟอนต์หลัก: ใช้กับ class font-sans (default ของ Tailwind) */
+  --font-sans: "Sarabun", ui-sans-serif, system-ui, sans-serif;
+  
+  /* ฟอนต์สำหรับโค้ด: ใช้กับ class font-mono */
+  --font-mono: "Google Sans Code", ui-monospace, monospace;
+}
+
+/* ============================================ */
+/* 4. Root Variables */
+/* ============================================ */
+/* กำหนดค่าพื้นฐานสำหรับทั้ง document */
+:root {
+  font-family: var(--font-sans);
+
+  /* Color variables สำหรับใช้ซ้ำทั้งเว็บ */
+  --color-primary: #2563eb;      /* blue-600 */
+  --color-secondary: #1e40af;    /* blue-800 */
+  --color-text: #1f2937;         /* gray-800 */
+  --color-bg: #ffffff;           /* white */
+}
+
+/* ============================================ */
+/* 5. Global Body Styles */
+/* ============================================ */
+body {
+  font-family: var(--font-sans);
+
+  /* Font smoothing */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: var(--color-bg);
+  color: var(--color-text);
+
+  /* ป้องกัน horizontal scroll */
+  overflow-x: hidden;
+
+  /* ทำให้ text อ่านง่ายขึ้น */
+  text-rendering: optimizeLegibility;
+}
+
+/* ============================================ */
+/* 6. Lenis Smooth Scroll Configuration */
+/* ============================================ */
+
+/* ให้ Lenis คุมความสูงแทน browser */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+/* ปิด native smooth scroll */
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+/* ป้องกัน overscroll */
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+/* ตอน Lenis หยุด */
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ปิด pointer event ใน iframe */
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* ============================================ */
+/* 7. iPad / Touch Device Fixes */
+/* ============================================ */
+
+/* iPad Portrait */
+@media only screen
+  and (min-device-width: 1024px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+  body {
+    cursor: default;
+  }
+
+  .cursor-wrapper {
+    display: none;
+  }
+
+  a {
+    cursor: pointer;
+  }
+}
+
+/* iPad Landscape */
+@media only screen
+  and (min-device-width: 1366px)
+  and (max-device-width: 1366px)
+  and (orientation: landscape)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+  body {
+    cursor: default;
+  }
+
+  .cursor-wrapper {
+    display: none;
+  }
+
+  a {
+    cursor: pointer;
+  }
+}
+
+/* ============================================ */
+/* 8. Utility Classes */
+/* ============================================ */
+
+/* ให้ scroll หลบ Navbar */
+.scroll-mt-20 {
+  scroll-margin-top: 5rem; /* 80px */
+}
+
+/* Accessibility focus */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ลบ focus แบบเก่า */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
