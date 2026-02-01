@@ -83,41 +83,37 @@ const Atmosphere = () => {
                 <p className="text-gray-500 mt-1">{group.description}</p>
               </div>
 
-              {/* ส่วน Grid รูปภาพ */}
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+              {/* ส่วน Grid รูปภาพแบบใหม่ (Main บน, Sub ล่าง) */}
+              <div className="flex flex-col gap-6">
                 
-                {/* รูปภาพหลัก (ด้านซ้าย) - เน้น Performance ด้วย Lazy Loading */}
-                <div className="md:col-span-7 aspect-[4/3] md:aspect-auto md:h-[550px] relative group overflow-hidden rounded-3xl shadow-lg">
+                {/* รูปภาพหลัก (Main) - เต็มพื้นที่ */}
+                <div className="w-full h-[300px] md:h-[500px] lg:h-[600px] relative group overflow-hidden rounded-3xl shadow-xl">
                   <img
                     src={group.main}
                     alt={group.title}
                     loading="lazy" 
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                   />
-                  {/* Overlay แสงเงาเวลา Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
 
-                {/* กลุ่มรูปย่อย 4 รูป (ด้านขวา) */}
-                {/* กลุ่มรูปย่อย 4 รูป (ด้านขวา) */}
-<div className="md:col-span-5">
-  <div className="grid grid-cols-2 grid-rows-2 gap-4 h-full md:h-[550px]">
-    {group.sub.map((src, subIndex) => (
-      <div 
-        key={subIndex}
-        className="relative group overflow-hidden rounded-2xl shadow-md border border-gray-100"
-      >
-        <img
-          src={src}
-          alt={`${group.title} detail ${subIndex + 1}`}
-          loading="lazy"
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-      </div>
-    ))}
-  </div>
-</div>
+                {/* กลุ่มรูปย่อย 4 รูป (Sub) - เรียงแถวล่าง */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                  {group.sub.map((src, subIndex) => (
+                    <div 
+                      key={subIndex}
+                      className="aspect-[4/3] relative group overflow-hidden rounded-2xl shadow-md border border-gray-100 cursor-pointer"
+                    >
+                      <img
+                        src={src}
+                        alt={`${group.title} detail ${subIndex + 1}`}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                  ))}
+                </div>
 
               </div>
             </div>

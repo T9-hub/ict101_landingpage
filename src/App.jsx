@@ -91,7 +91,7 @@ const App = () => {
     <Router>
       {/* Component ที่เลื่อนหน้าขึ้นบนทุกครั้งที่เปลี่ยน route */}
       <ScrollToTop />
-      <SmoothCursor />
+      {/* <SmoothCursor /> */}
 
       <div className="w-full overflow-hidden">
         {/* Navbar แสดงทุกหน้า (fixed ด้านบน) */}
