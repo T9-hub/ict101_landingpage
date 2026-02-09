@@ -1,8 +1,8 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { 
-  Monitor, Globe, Cpu, Wifi, Smartphone, Video, 
-  Database, Mic, Layers, Code, PenTool, Gamepad2, GraduationCap 
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  ArrowRight, X, Monitor, Globe, Cpu, Wifi, Smartphone, Video,
+  Database, Mic, Layers, Code, PenTool, Gamepad2, GraduationCap
 } from 'lucide-react';
 
 /** * 1. Data Configuration (ย้ายไว้นอก Component เพื่อลดภาระการ Render)
@@ -12,7 +12,7 @@ const CURRICULUM_DATA = [
   {
     year: "มัธยมศึกษาปีที่ 4",
     title: "Foundation of Technology",
-    description: "ปูพื้นฐานฮาร์ดแวร์และนวัตกรรม IoT",
+    description: "สร้างพื้นฐานฮาร์ดแวร์และนวัตกรรม IoT",
     color: "bg-blue-50 border-blue-100 text-blue-600",
     iconColor: "text-blue-500",
     subjects: [
@@ -51,12 +51,42 @@ const CURRICULUM_DATA = [
 ];
 
 const PATHWAYS = [
-  { name: "วิทยาการคอมพิวเตอร์", icon: <Code /> },
-  { name: "เทคโนโลยีสารสนเทศ", icon: <Globe /> },
-  { name: "การออกแบบกราฟิก", icon: <PenTool /> },
-  { name: "การออกแบบและสร้างเกม", icon: <Gamepad2 /> },
-  { name: "การออกแบบแอนิเมชัน", icon: <Video /> },
-  { name: "คณะทางด้านสายศิลป์", icon: <GraduationCap /> },
+  {
+    name: "วิทยาการคอมพิวเตอร์",
+    icon: <Code />,
+    description: "ศึกษาเกี่ยวกับการคำนวณ การประมวลผลข้อมูล และการวางระบบซอฟต์แวร์ เน้นการเขียนโปรแกรมและอัลกอริทึม",
+    careers: ["Software Engineer", "Data Scientist", "System Architect", "AI Developer"]
+  },
+  {
+    name: "เทคโนโลยีสารสนเทศ",
+    icon: <Globe />,
+    description: "เน้นการประยุกต์ใช้คอมพิวเตอร์และอุปกรณ์โทรคมนาคม เพื่อจัดเก็บ ค้นหา ส่งผ่าน และจัดดำเนินการข้อมูล",
+    careers: ["IT Support", "Network Administrator", "System Analyst", "Database Admin"]
+  },
+  {
+    name: "การออกแบบกราฟิก",
+    icon: <PenTool />,
+    description: "การใช้ศิลปะและเทคโนโลยีในการสื่อสารผ่านภาพ ไม่ว่าจะเป็นสื่อสิ่งพิมพ์ หรือสื่อดิจิทัล",
+    careers: ["Graphic Designer", "UX/UI Designer", "Art Director", "Brand Identity Designer"]
+  },
+  {
+    name: "การออกแบบและสร้างเกม",
+    icon: <Gamepad2 />,
+    description: "เรียนรู้กระบวนการสร้างเกม ตั้งแต่การออกแบบกลไกเกม การเขียนโปรแกรม ไปจนถึงกราฟิกในเกม",
+    careers: ["Game Developer", "Level Designer", "Game Artist", "Game Tester"]
+  },
+  {
+    name: "การออกแบบแอนิเมชัน",
+    icon: <Video />,
+    description: "การสร้างภาพเคลื่อนไหวทางคอมพิวเตอร์ ทั้ง 2D และ 3D สำหรับภาพยนตร์ โฆษณา และสื่อออนไลน์",
+    careers: ["3D Modeler", "Animator", "Motion Graphics Artist", "VFX Artist"]
+  },
+  {
+    name: "คณะทางด้านสายศิลป์",
+    icon: <GraduationCap />,
+    description: "เส้นทางสำหรับผู้ที่สนใจการประยุกต์ใช้เทคโนโลยีกับความคิดสร้างสรรค์ทางศิลปะและมนุษยศาสตร์",
+    careers: ["Digital Artist", "Multimedia Artist", "Creative Director", "Content Creator"]
+  },
 ];
 
 /**
@@ -93,15 +123,17 @@ const CurriculumCard = ({ level, index }) => (
 );
 
 const CurriculumPage = () => {
+  const [selectedPathway, setSelectedPathway] = useState(null);
+
   return (
     <div className="bg-white min-h-screen text-gray-800 font-sans overflow-x-hidden">
-      
+
       {/* 2. Hero Section: อธิบายภาพรวมหลักสูตร */}
       <section className="relative pt-24 pb-20 px-4 text-center">
         {/* Background Blur Effect */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-64 bg-blue-50/50 blur-[100px] -z-10 rounded-full"></div>
-        
-        <motion.div 
+
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
@@ -120,31 +152,32 @@ const CurriculumPage = () => {
       </section>
 
       {/* 3. Curriculum Grid: แสดงผลรายวิชา (ลิ้งก์กับ CURRICULUM_DATA) */}
-    <section className="container mx-auto px-4 md:px-8 mb-24">
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-    {CURRICULUM_DATA.map((level, index) => (
-      <div
-        key={index}
-        className={`
-          ${index === 2 
-            ? "sm:col-span-2 sm:flex sm:justify-center lg:col-span-1" 
-            : ""}
+      <section className="container mx-auto px-4 md:px-8 mb-24">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {CURRICULUM_DATA.map((level, index) => (
+            <div
+              key={index}
+              className={`
+          ${index === 2
+                  ? "sm:col-span-2 sm:flex sm:justify-center lg:col-span-1"
+                  : ""}
         `}
-      >
-        <div className="w-full sm:max-w-md lg:max-w-none">
-          <CurriculumCard level={level} index={index} />
+            >
+              <div className="w-full sm:max-w-md lg:max-w-none">
+                <CurriculumCard level={level} index={index} />
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-    ))}
-  </div>
-</section>
+      </section>
 
+      {/* 4. Future Pathways: เส้นทางศึกษาต่อ (เพิ่มความโดดเด่นของ UI) */}
       {/* 4. Future Pathways: เส้นทางศึกษาต่อ (เพิ่มความโดดเด่นของ UI) */}
       <section className="container mx-auto px-4 md:px-8 pb-20">
         <div className="bg-slate-900 rounded-[3rem] p-10 md:p-20 relative overflow-hidden shadow-2xl">
-           {/* Decorative Elements */}
-           <div className="absolute top-0 right-0 w-80 h-80 bg-blue-600/20 rounded-full blur-[80px] -mr-40 -mt-40"></div>
-           <div className="absolute bottom-0 left-0 w-80 h-80 bg-indigo-600/10 rounded-full blur-[80px] -ml-40 -mb-40"></div>
+          {/* Decorative Elements */}
+          <div className="absolute top-0 right-0 w-80 h-80 bg-blue-600/20 rounded-full blur-[80px] -mr-40 -mt-40"></div>
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-indigo-600/10 rounded-full blur-[80px] -ml-40 -mb-40"></div>
 
           <div className="relative z-10 text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 italic">FUTURE PATHWAYS</h2>
@@ -157,17 +190,78 @@ const CurriculumPage = () => {
               <motion.div
                 key={index}
                 whileHover={{ y: -5, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
-                className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 flex flex-col items-center justify-center text-center gap-4 transition-all duration-300"
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setSelectedPathway(path)}
+                className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 flex flex-col items-center justify-center text-center gap-4 transition-all duration-300 cursor-pointer h-full group"
               >
-                <div className="text-blue-400 bg-blue-400/10 p-4 rounded-xl">
+                <div className="text-blue-400 bg-blue-400/10 p-4 rounded-xl group-hover:bg-blue-400/20 transition-colors">
                   {path.icon}
                 </div>
                 <span className="text-sm font-semibold text-slate-200 leading-snug">{path.name}</span>
+                <span className="text-[10px] text-blue-300 border border-blue-500/30 px-2 py-1 rounded-full opacity-60 group-hover:opacity-100 transition-opacity">
+                  กดดูรายละเอียด
+                </span>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Modal for Pathway Details */}
+      <AnimatePresence>
+        {selectedPathway && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md"
+            onClick={() => setSelectedPathway(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.9, y: 20, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-3xl p-8 max-w-lg w-full relative shadow-2xl max-h-[90vh] overflow-y-auto"
+            >
+              <button
+                onClick={() => setSelectedPathway(null)}
+                className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-800 transition-colors"
+                aria-label="Close modal"
+              >
+                <X size={24} />
+              </button>
+
+              <div className="flex flex-col items-center text-center">
+                <div className="w-20 h-20 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
+                  {React.cloneElement(selectedPathway.icon, { size: 40 })}
+                </div>
+
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{selectedPathway.name}</h3>
+
+                <p className="text-gray-600 leading-relaxed mb-8 px-4 text-sm md:text-base">
+                  {selectedPathway.description}
+                </p>
+
+                <div className="w-full text-left bg-gray-50 rounded-2xl p-6">
+                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b pb-2 border-gray-200 flex items-center gap-2">
+                    <GraduationCap size={16} className="text-blue-500" />
+                    เส้นทางอาชีพ
+                  </h4>
+                  <ul className="grid grid-cols-1 gap-3">
+                    {selectedPathway.careers && selectedPathway.careers.map((career, i) => (
+                      <li key={i} className="flex items-center gap-3 text-gray-700 text-sm bg-white px-4 py-3 rounded-xl border border-gray-100 shadow-sm">
+                        <ArrowRight size={14} className="text-blue-500 shrink-0" />
+                        <span className="font-medium">{career}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   );

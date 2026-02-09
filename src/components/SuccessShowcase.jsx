@@ -14,14 +14,14 @@
 // //     { name: "นายจักรพันธ์ นามวงษ์", faculty: "วิทยาลัยศิลปะ สื่อ เเละเทคโนโลยี", university: "มหาวิทยาลัยแม่โจ้", img: assets.awa_ict6  },
 // //     { name: "นางสาวกนกพิชญา ครุธแก้ว", faculty: "วิทยาลัยศิลปะ สื่อ เเละเทคโนโลยี", university: "มหาวิทยาลัยเชียงใหม่", img: assets.awa_ict7  },
 // //     { name: "นางสาวอัญชิสา บุตรจัน", faculty: "บริหารธุรกิจ", university: "มหาวิทยาลัยนเรศวร", img: assets.awa_ict5  },
-   
-    
+
+
 // //   ];
 
 // //   return (
 // //     <section className="py-24 bg-white">
 // //       <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        
+
 // //         {/* หัวข้อ Section */}
 // //         <div className="text-center max-w-3xl mx-auto mb-16">
 // //           <motion.div
@@ -134,7 +134,7 @@
 // const SuccessShowcase = () => {
 //   return (
 //     <section className="relative py-24 bg-white overflow-hidden">
-      
+
 //       {/* === 2. Animated Gradient Pattern (มุมขวาบน) === */}
 //       <motion.div
 //         animate={{
@@ -152,7 +152,7 @@
 //       />
 
 //       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
-        
+
 //         {/* หัวข้อ Section */}
 //         <div className="text-center max-w-3xl mx-auto mb-16">
 //           <motion.div
@@ -164,7 +164,7 @@
 //             <Trophy size={16} /> 
 //             <span className="uppercase tracking-wider">Achievement</span>
 //           </motion.div>
-          
+
 //           <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 font-sans">
 //             ความสำเร็จของ <span className="text-blue-600">ICT TALENT</span>
 //           </h2>
@@ -256,22 +256,18 @@ const SUCCESS_DATA = {
     { name: "นางสาวกนกพิชญา ครุธแก้ว", faculty: "วิทยาลัยศิลปะ สื่อ เเละเทคโนโลยี", university: "มหาวิทยาลัยเชียงใหม่", img: assets.awa_ict7 },
     { name: "นางสาวอัญชิสา บุตรจัน", faculty: "บริหารธุรกิจ", university: "มหาวิทยาลัยนเรศวร", img: assets.awa_ict5 },
   ],
-  year2567: [
-    { name: "ชื่อนักเรียนรุ่น 67", faculty: "เทคโนโลยีสารสนเทศ", university: "มหาวิทยาลัยมหิดล", img: assets.awa_ict1 },
-    { name: "ชื่อนักเรียนรุ่น 67", faculty: "วิทยาลัยศิลปะ สื่อ เเละเทคโนโลยี", university: "มหาวิทยาลัยเชียงใหม่", img: assets.awa_ict2 },
-    // สามารถเพิ่มข้อมูลคนอื่นๆ ในรุ่น 2567 ต่อได้เลยครับ
-  ]
+
 };
 
 const SuccessShowcase = () => {
   return (
     <section className="relative py-24 bg-white overflow-hidden">
-      
+
       {/* Background Decor */}
       <div className="absolute -top-24 -right-24 w-[500px] h-[500px] bg-gradient-to-br from-blue-400/10 via-indigo-300/10 to-purple-400/10 blur-[80px] rounded-full -z-10" />
 
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
-        
+
         {/* หัวข้อ Section */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div
@@ -280,10 +276,10 @@ const SuccessShowcase = () => {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-50 text-yellow-700 text-sm font-bold mb-6 border border-yellow-100"
           >
-            <Trophy size={16} /> 
+            <Trophy size={16} />
             <span className="uppercase tracking-wider">Our Success Stories</span>
           </motion.div>
-          
+
           <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 font-sans">
             ความสำเร็จของ <span className="text-blue-600">ICT TALENT</span>
           </h2>
@@ -292,7 +288,7 @@ const SuccessShowcase = () => {
         {/* --- วนลูปแสดงข้อมูลตามปี --- */}
         {Object.entries(SUCCESS_DATA).map(([yearKey, students], groupIndex) => (
           <div key={yearKey} className={groupIndex !== 0 ? "mt-24" : ""}>
-            
+
             {/* Label บอกปีการศึกษา */}
             <div className="flex items-center gap-4 mb-10">
               <div className="bg-blue-600 text-white px-6 py-2 rounded-2xl font-bold flex items-center gap-2 shadow-lg shadow-blue-200">
@@ -313,8 +309,8 @@ const SuccessShowcase = () => {
                   transition={{ delay: index * 0.05 }}
                   className="group relative aspect-square rounded-2xl md:rounded-[2.5rem] overflow-hidden bg-gray-50 shadow-sm border border-gray-100"
                 >
-                  <img 
-                    src={student.img} 
+                  <img
+                    src={student.img}
                     alt={student.name}
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -333,8 +329,8 @@ const SuccessShowcase = () => {
 
                   {/* ป้ายชื่อ (Mobile/Static) */}
                   <div className="absolute bottom-3 left-3 right-3 bg-white/90 backdrop-blur-md py-2 px-3 rounded-xl shadow-lg md:group-hover:opacity-0 transition-opacity duration-300 text-left">
-                     <p className="text-[10px] md:text-xs font-bold text-gray-800 truncate">{student.name}</p>
-                     <p className="text-[9px] text-blue-600 truncate">{student.university}</p>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-800 truncate">{student.name}</p>
+                    <p className="text-[9px] text-blue-600 truncate">{student.university}</p>
                   </div>
                 </motion.div>
               ))}
@@ -344,9 +340,9 @@ const SuccessShowcase = () => {
 
         {/* ปุ่มดูทั้งหมด */}
         <div className="mt-20 text-center">
-          <Link 
-            to="/success" 
-            onClick={() => window.scrollTo(0, 0)} 
+          <Link
+            to="/success"
+            onClick={() => window.scrollTo(0, 0)}
             className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-gray-900 text-white font-bold hover:bg-blue-600 transition-all duration-300 shadow-xl shadow-gray-200 hover:-translate-y-1 active:scale-95"
           >
             เปิดดูทำเนียบรุ่นทั้งหมด
